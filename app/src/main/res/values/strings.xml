@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Events</string>
+    <string name="button_login">Log In</string>
+    <string name="title_activity_home">Home</string>
+</resources>
