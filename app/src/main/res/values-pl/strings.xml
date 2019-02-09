@@ -3,4 +3,14 @@
     <string name="app_name">Wydarzenia</string>
     <string name="button_login">Zaloguj</string>
     <string name="title_activity_home">Strona Główna</string>
+    <string name="username">użytkownik</string>
+    <string name="password">hasło</string>
+    <string name="title_activity_register">Zaloguj</string>
+    <string name="register">Zarejestruj</string>
+    <string name="events">Events</string>
+
+    <!--Main view for searching through activities - Michal Matuszewski-->
+    <string name="event_list_title">Wydarzenia w twojej okolicy</string>
+
+
 </resources>

@@ -7,4 +7,9 @@
     <string name="title_activity_register">Sign up</string>
     <string name="register">Register</string>
     <string name="events">Events</string>
+
+    <!--Main view for searching through activities - Michal Matuszewski-->
+    <string name="event_list_title">Events in your area</string>
+
+
 </resources>
