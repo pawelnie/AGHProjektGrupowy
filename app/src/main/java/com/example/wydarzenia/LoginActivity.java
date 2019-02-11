@@ -11,7 +11,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameET, passwordET;
     private TextView statusTV;
-    private String logInURL = "http://serpens.usermd.net/events/login.php"; //URL do skryptu php odpowiedzialnego za logowanie (MySQL)
+    private String logInURL = "https://serpens.usermd.net/events/login.php"; //URL do skryptu php odpowiedzialnego za logowanie (MySQL)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

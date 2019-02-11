@@ -10,7 +10,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText usernameET, passwordET;
     private TextView statusTV;
-    private String registerURL = "http://serpens.usermd.net/events/register.php"; //URL do skryptu php odpowiedzialnego za rejestrację (MySQL)
+    private String registerURL = "https://serpens.usermd.net/events/register.php"; //URL do skryptu php odpowiedzialnego za rejestrację (MySQL)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
