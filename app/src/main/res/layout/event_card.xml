@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".CardAdapter">
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
@@ -30,12 +29,6 @@
                 android:text="TextView"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <TextView
-                android:id="@+id/eventBrief"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="TextView" />
         </LinearLayout>
 
     </android.support.v7.widget.CardView>

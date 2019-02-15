@@ -16,10 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".EventEntryActivity"></activity>
-        <activity android:name=".CardAdapter" />
-        <activity
-            android:name=".EventListActivity"
-            android:exported="true" />
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register" />
