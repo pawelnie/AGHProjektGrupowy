@@ -23,7 +23,7 @@ public class RecyclerAdapterEvents extends RecyclerView.Adapter<RecyclerAdapterE
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.event_card, parent, false);
+        View view = mInflater.inflate(R.layout.item_event_list, parent, false);
         return new ViewHolder(view);
     }
 
@@ -47,7 +47,7 @@ public class RecyclerAdapterEvents extends RecyclerView.Adapter<RecyclerAdapterE
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.eventName);
+            myTextView = itemView.findViewById(R.id.text_event);
             itemView.setOnClickListener(this);
         }
 

@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //Metoda ponizej pozwala przejsc do ekranu głównego aplikacji
     public void goHome(View view) {
-        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
     }
 
