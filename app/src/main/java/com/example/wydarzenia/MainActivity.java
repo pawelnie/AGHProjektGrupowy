@@ -14,10 +14,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.example.wydarzenia.adapter.RetrofitRecyclerAdapter;
+import com.example.wydarzenia.model.Blog;
+import com.example.wydarzenia.network.GetDataService;
+import com.example.wydarzenia.network.RetrofitClientInstance;
+
+import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends ActivityWithMenu
         implements NavigationView.OnNavigationItemSelectedListener {
     private RecyclerAdapterEvents adapter;
+    private RetrofitRecyclerAdapter adapter2;
+    private RecyclerView recyclerView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +51,32 @@ public class MainActivity extends ActivityWithMenu
             }
         });
 
+        /*Create handle for the RetrofitInstance interface*/
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<List<Blog>> call = service.getAllBlogs();
+        call.enqueue(new Callback<List<Blog>>() {
+            @Override
+            public void onResponse(Call<List<Blog>> call, Response<List<Blog>> response) {
+                generateDataList(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Blog>> call, Throwable t) {
+                if (t instanceof IOException) {
+                    Toast.makeText(MainActivity.this, "this is an actual network failure :( inform the user and possibly retry", Toast.LENGTH_SHORT).show();
+                    // logging probably not necessary
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "conversion issue! big problems :(", Toast.LENGTH_SHORT).show();
+                    // todo log to some central bug tracking service
+                }
+            }
+        });
+
+
+
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -45,19 +86,27 @@ public class MainActivity extends ActivityWithMenu
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        initializeContent();
+        //TODO old recycler remaining to removal if new works
+       // initializeContent();
     }
-
-
-    private void initializeContent() {
-
-        // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.recycler_events);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RecyclerAdapterEvents(this, DataManagerEvents.getInstance().getEvents());
-//                adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
+    /*Method to generate List of data using RecyclerView with custom adapter*/
+    private void generateDataList(List<Blog> blogList) {
+        recyclerView2 = findViewById(R.id.recycler_events);
+        adapter2 = new RetrofitRecyclerAdapter(this,blogList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+        recyclerView2.setLayoutManager(layoutManager);
+        recyclerView2.setAdapter(adapter2);
     }
+    //TODO old recycler remaining to removal if new works
+//    private void initializeContent() {
+//
+//        // set up the RecyclerView
+//        RecyclerView recyclerView = findViewById(R.id.recycler_events);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        adapter = new RecyclerAdapterEvents(this, DataManagerEvents.getInstance().getEvents());
+////                adapter.setClickListener(this);
+//        recyclerView.setAdapter(adapter);
+//    }
 
     @Override
     public void onBackPressed() {

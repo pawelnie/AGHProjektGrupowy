@@ -47,7 +47,7 @@ public class RecyclerAdapterEvents extends RecyclerView.Adapter<RecyclerAdapterE
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.text_event);
+            myTextView = itemView.findViewById(R.id.text_title);
             itemView.setOnClickListener(this);
         }
 
