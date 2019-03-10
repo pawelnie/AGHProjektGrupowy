@@ -8,15 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.wydarzenia.R;
-import com.example.wydarzenia.model.Blog;
+import com.example.wydarzenia.model.Event;
 
 import java.util.List;
 
 public class RetrofitRecyclerAdapter extends RecyclerView.Adapter<RetrofitRecyclerAdapter.CustomViewHolder>{
-    private List<Blog> dataList;
+    private List<Event> dataList;
     private Context context;
 
-    public RetrofitRecyclerAdapter(Context context, List<Blog> dataList){
+    public RetrofitRecyclerAdapter(Context context, List<Event> dataList){
         this.context = context;
         this.dataList = dataList;
     }

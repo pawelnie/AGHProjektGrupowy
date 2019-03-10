@@ -10,14 +10,12 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.wydarzenia.adapter.RetrofitRecyclerAdapter;
-import com.example.wydarzenia.model.Blog;
+import com.example.wydarzenia.model.Event;
 import com.example.wydarzenia.network.GetDataService;
 import com.example.wydarzenia.network.RetrofitClientInstance;
 
@@ -53,15 +51,15 @@ public class MainActivity extends ActivityWithMenu
 
         /*Create handle for the RetrofitInstance interface*/
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<List<Blog>> call = service.getAllBlogs();
-        call.enqueue(new Callback<List<Blog>>() {
+        Call<List<Event>> call = service.getAllBlogs();
+        call.enqueue(new Callback<List<Event>>() {
             @Override
-            public void onResponse(Call<List<Blog>> call, Response<List<Blog>> response) {
+            public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
                 generateDataList(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<Blog>> call, Throwable t) {
+            public void onFailure(Call<List<Event>> call, Throwable t) {
                 if (t instanceof IOException) {
                     Toast.makeText(MainActivity.this, "this is an actual network failure :( inform the user and possibly retry", Toast.LENGTH_SHORT).show();
                     // logging probably not necessary
@@ -90,9 +88,9 @@ public class MainActivity extends ActivityWithMenu
        // initializeContent();
     }
     /*Method to generate List of data using RecyclerView with custom adapter*/
-    private void generateDataList(List<Blog> blogList) {
+    private void generateDataList(List<Event> eventList) {
         recyclerView2 = findViewById(R.id.recycler_events);
-        adapter2 = new RetrofitRecyclerAdapter(this,blogList);
+        adapter2 = new RetrofitRecyclerAdapter(this, eventList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView2.setLayoutManager(layoutManager);
         recyclerView2.setAdapter(adapter2);

@@ -7,15 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.wydarzenia.model.Event;
+
 import java.util.List;
 
 public class RecyclerAdapterEvents extends RecyclerView.Adapter<RecyclerAdapterEvents.ViewHolder> {
-    private List<EventInfo> mData;
+    private List<Event> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    RecyclerAdapterEvents(Context context, List<EventInfo> data) {
+    RecyclerAdapterEvents(Context context, List<Event> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -30,7 +32,7 @@ public class RecyclerAdapterEvents extends RecyclerView.Adapter<RecyclerAdapterE
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        EventInfo event = mData.get(position);
+        Event event = mData.get(position);
         holder.myTextView.setText(event.getTitle());
     }
 

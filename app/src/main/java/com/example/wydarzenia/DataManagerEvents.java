@@ -1,12 +1,14 @@
 package com.example.wydarzenia;
 
+import com.example.wydarzenia.model.Event;
+
 import java.util.ArrayList;
 import java.util.List;
 
 class DataManagerEvents {
     private static DataManagerEvents ourInstance = null;
 
-    private List<EventInfo> mEvents = new ArrayList<>();
+    private List<Event> mEvents = new ArrayList<>();
 
     static DataManagerEvents getInstance() {
         if(ourInstance == null) {
@@ -19,20 +21,20 @@ class DataManagerEvents {
     }
 
     private void initializeEvents() {
-        mEvents.add(0, new EventInfo("U2 Concert"));
-        mEvents.add(1, new EventInfo("Italian Cooking Event"));
-        mEvents.add(2, new EventInfo("Football game"));
-        mEvents.add(3, new EventInfo("Hobbit movie"));
-        mEvents.add(4, new EventInfo("Krakow Marathon"));
-        mEvents.add(5, new EventInfo("AGH Java Academy"));
-        mEvents.add(6, new EventInfo("Swimming School"));
-        mEvents.add(7, new EventInfo("Hobbit movie"));
-        mEvents.add(8, new EventInfo("Krakow Marathon"));
-        mEvents.add(9, new EventInfo("AGH Java Academy"));
-        mEvents.add(10, new EventInfo("Swimming School"));
+        mEvents.add(0, new Event(1, "U2 Concert", "desc"));
+        mEvents.add(1, new Event(2, "Italian Cooking Event", "desc"));
+        mEvents.add(2, new Event(3, "Football game", "desc"));
+        mEvents.add(3, new Event(4, "Hobbit movie", "desc"));
+        mEvents.add(4, new Event(5, "Krakow Marathon", "desc"));
+        mEvents.add(5, new Event(6, "AGH Java Academy", "desc"));
+        mEvents.add(6, new Event(7, "Swimming School", "desc"));
+        mEvents.add(7, new Event(8, "Hobbit movie", "desc"));
+        mEvents.add(8, new Event(9, "Krakow Marathon", "desc"));
+        mEvents.add(9, new Event(10, "AGH Java Academy", "desc"));
+        mEvents.add(10, new Event(11, "Swimming School", "desc"));
 
     }
-    List<EventInfo> getEvents() {
+    List<Event> getEvents() {
         return mEvents;
     }
 

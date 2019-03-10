@@ -2,7 +2,7 @@ package com.example.wydarzenia.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Blog {
+public class Event {
     @SerializedName("id")
     private Integer id;
     @SerializedName("title")
@@ -10,7 +10,7 @@ public class Blog {
     @SerializedName("content")
     private String content;
 
-    public Blog(Integer id, String title, String content) {
+    public Event(Integer id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
