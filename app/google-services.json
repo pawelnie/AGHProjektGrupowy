@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "88760817343",
+    "firebase_url": "https://eventapp-ad86e.firebaseio.com",
+    "project_id": "eventapp-ad86e",
+    "storage_bucket": "eventapp-ad86e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88760817343:android:f75160bdb99446ba",
+        "android_client_info": {
+          "package_name": "com.example.wydarzenia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88760817343-7nhimdm5cp5eiagso6nu6bot31hl31pg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wydarzenia",
+            "certificate_hash": "094f5d17a8f641c4f1fcfadca02c1f6f057351b5"
+          }
+        },
+        {
+          "client_id": "88760817343-d04tqtaskrov7ifaeiq4l7egcl2g2bvl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwEIkqOmvmsEKkh64TL32uU70ml5tqp04"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88760817343-d04tqtaskrov7ifaeiq4l7egcl2g2bvl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
