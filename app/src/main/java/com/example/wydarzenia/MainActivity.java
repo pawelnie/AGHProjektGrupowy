@@ -18,6 +18,7 @@ import com.example.wydarzenia.adapter.RetrofitRecyclerAdapter;
 import com.example.wydarzenia.model.Event;
 import com.example.wydarzenia.network.GetDataService;
 import com.example.wydarzenia.network.RetrofitClientInstance;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,10 +33,16 @@ public class MainActivity extends ActivityWithMenu
     private RetrofitRecyclerAdapter adapter2;
     private RecyclerView recyclerView2;
 
+    private FirebaseAuth mAuth;
+    private String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mAuth = FirebaseAuth.getInstance();
+        userID = mAuth.getInstance().getCurrentUser().getUid();
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,7 +51,7 @@ public class MainActivity extends ActivityWithMenu
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Replace with your text", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
