@@ -9,8 +9,13 @@ import retrofit2.http.GET;
 
 public interface GetDataService {
 
-    @GET("/blog")
-    Call<List<Event>> getAllBlogs();
+    @GET("/event")
+    Call<List<Event>> getAllEvent();
+
+//    TODO
+//    below for connecting with first server application, to be removed
+//@GET("/blog")
+//Call<List<Event>> getAllEvent();
 
     @GET("/blog/1")
     Call<Event> getFirst();

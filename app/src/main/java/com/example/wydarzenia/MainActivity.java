@@ -40,6 +40,9 @@ public class MainActivity extends ActivityWithMenu
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        TODO
+//        App is crashing on below method while users skip login (EVENTS button)
+//        Comment below 2 lines before building the app to avoid this issue
         mAuth = FirebaseAuth.getInstance();
         userID = mAuth.getInstance().getCurrentUser().getUid();
 
@@ -58,7 +61,7 @@ public class MainActivity extends ActivityWithMenu
 
         /*Create handle for the RetrofitInstance interface*/
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<List<Event>> call = service.getAllBlogs();
+        Call<List<Event>> call = service.getAllEvent();
         call.enqueue(new Callback<List<Event>>() {
             @Override
             public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {

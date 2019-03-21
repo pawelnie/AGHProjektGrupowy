@@ -22,18 +22,19 @@ public class RetrofitRecyclerAdapter extends RecyclerView.Adapter<RetrofitRecycl
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
-
         public final View mView;
-
         TextView mTitle;
         TextView mDescription;
+        TextView mLocation;
+        TextView mDate;
 
         CustomViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
-
             mTitle = mView.findViewById(R.id.text_title);
             mDescription = mView.findViewById(R.id.text_description);
+            mLocation = mView.findViewById(R.id.text_location);
+            mDate = mView.findViewById(R.id.text_date);
         }
     }
 
@@ -47,7 +48,9 @@ public class RetrofitRecyclerAdapter extends RecyclerView.Adapter<RetrofitRecycl
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         holder.mTitle.setText(dataList.get(position).getTitle());
-        holder.mDescription.setText(dataList.get(position).getContent());
+        holder.mDescription.setText(dataList.get(position).getDescription());
+        holder.mLocation.setText(dataList.get(position).getLocation());
+        holder.mDate.setText(dataList.get(position).getDate());
 
 //        Picasso.Builder builder = new Picasso.Builder(context);
 //        builder.downloader(new OkHttp3Downloader(context));
