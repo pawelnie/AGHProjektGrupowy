@@ -70,5 +70,12 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //MM-> tylko do debuggowania pojedynczej karty evenu
+    public void goToEvent(View view){
+        Intent intent = new Intent(LoginActivity.this, EventEntryActivity.class);
+        intent.putExtra("eid", "1");
+        startActivity(intent);
+    }
+
 }
 

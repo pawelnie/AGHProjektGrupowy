@@ -17,6 +17,6 @@ public interface GetDataService {
 //@GET("/blog")
 //Call<List<Event>> getAllEvent();
 
-    @GET("/blog/1")
+    @GET("/event/1")
     Call<Event> getFirst();
 }

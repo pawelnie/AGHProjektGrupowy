@@ -1,20 +1,19 @@
-package com.example.wydarzenia;
+package com.example.wydarzenia.ViewModel;
 
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
 
 import com.example.wydarzenia.model.Event;
 
-import javax.inject.Inject;
 
-public class EventViewModel extends ViewModel {
+public class EventViewModel extends AndroidViewModel {
     private LiveData<Event> event;
     private EventRepository eventRepository;
 
-    //Using Dagger2 injects dependencies of repository
-    @Inject
-    public EventViewModel(EventRepository eventRepository){
-        this.eventRepository = eventRepository;
+    public EventViewModel(Application application){
+        super(application);
+        this.eventRepository = new EventRepository();
     }
 
     public void init(int eventId){

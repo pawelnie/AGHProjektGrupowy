@@ -1,27 +1,39 @@
 package com.example.wydarzenia;
-
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
+
+import com.example.wydarzenia.ViewModel.EventViewModel;
+
+
+import dagger.android.AndroidInjection;
+
 
 public class EventEntryActivity extends ActivityWithMenu {
 
     private final String EID_KEY = "eid";
-    private EventViewModel viewModel;
+    private TextView eventTitle;
+
+    EventViewModel eventViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_entry);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+        eventTitle = (TextView) findViewById(R.id.eventTitle);
 
         //Adding event class
-        int userId = Integer.parseInt(getIntent().getStringExtra(EID_KEY));
-        viewModel = ViewModelProviders.of(this).get(EventViewModel.class);
-        viewModel.init(userId);
-        viewModel.getEventInfo().observe(this, event -> {
-            //UPDATE UI
+
+
+
+        int eventId = Integer.parseInt(getIntent().getStringExtra(EID_KEY));
+
+        eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
+        eventViewModel.init(eventId);
+        eventViewModel.getEventInfo().observe(this, event -> {
+            eventTitle.setText(event.getTitle());
                 });
 
 
