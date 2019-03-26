@@ -36,7 +36,6 @@ public class EventEntryActivity extends ActivityWithMenu {
             eventTitle.setText(event.getTitle());
                 });
 
-
     }
 }
 
