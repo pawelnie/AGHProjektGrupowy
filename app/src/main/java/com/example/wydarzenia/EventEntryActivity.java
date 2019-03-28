@@ -27,7 +27,7 @@ public class EventEntryActivity extends ActivityWithMenu {
         //Adding event class
 
 
-
+//TODO: Pobieranie niepoprawny event, gdzies w okolicy lambdy jest blad
         int eventId = Integer.parseInt(getIntent().getStringExtra(EID_KEY));
 
         eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
