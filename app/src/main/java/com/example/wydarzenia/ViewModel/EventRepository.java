@@ -38,7 +38,7 @@ public class EventRepository {
 
         final MutableLiveData<Event> data = new MutableLiveData<>();
         dataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        dataService.getFirst().enqueue(new Callback<Event>() {
+        dataService.getEvent(eventId).enqueue(new Callback<Event>() {
             @Override
             public void onResponse(Call<Event> call, Response<Event> response) {
                 //setting the data to the response

@@ -43,8 +43,8 @@ public class MainActivity extends ActivityWithMenu
 //        TODO
 //        App is crashing on below method while users skip login (EVENTS button)
 //        Comment below 2 lines before building the app to avoid this issue
-        mAuth = FirebaseAuth.getInstance();
-        userID = mAuth.getInstance().getCurrentUser().getUid();
+        //mAuth = FirebaseAuth.getInstance();
+        //userID = mAuth.getInstance().getCurrentUser().getUid();
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

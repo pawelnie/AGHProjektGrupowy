@@ -6,6 +6,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface GetDataService {
 
@@ -19,4 +20,7 @@ public interface GetDataService {
 
     @GET("/event/1")
     Call<Event> getFirst();
+
+    @GET("/event/{id}")
+    Call<Event> getEvent(@Path("id") int id);
 }
