@@ -1,11 +1,14 @@
 package com.example.wydarzenia.network;
 
 import com.example.wydarzenia.model.Event;
+import com.example.wydarzenia.model.User;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface GetDataService {
@@ -23,4 +26,8 @@ public interface GetDataService {
 
     @GET("/event/{id}")
     Call<Event> getEvent(@Path("id") int id);
+
+    @POST("/user")
+    Call<User> saveUser(@Body User user);
+
 }
