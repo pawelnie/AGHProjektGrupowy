@@ -81,10 +81,12 @@
 
     <Button
         android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:elevation="0dp"
         android:text="@string/show_map"
         app:layout_constraintStart_toEndOf="@+id/eventImage"
         app:layout_constraintTop_toBottomOf="@+id/eventInfo" />
