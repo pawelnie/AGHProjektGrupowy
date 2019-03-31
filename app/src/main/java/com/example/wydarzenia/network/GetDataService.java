@@ -16,11 +16,6 @@ public interface GetDataService {
     @GET("/event")
     Call<List<Event>> getAllEvent();
 
-//    TODO
-//    below for connecting with first server application, to be removed
-//@GET("/blog")
-//Call<List<Event>> getAllEvent();
-
     @GET("/event/1")
     Call<Event> getFirst();
 
