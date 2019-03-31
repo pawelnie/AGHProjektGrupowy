@@ -1,13 +1,8 @@
 package com.example.wydarzenia.model;
-
 import android.arch.lifecycle.LiveData;
-
 import java.util.List;
 
-import javax.inject.Singleton;
 
-
-@Singleton
 public class EventCache {
 
     //to be implemented - PLACEHOLDER HERE

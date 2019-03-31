@@ -9,6 +9,10 @@
     android:background="#00ffffff">
 
     <include layout="@layout/content_main" />
+    <!--<include-->
+        <!--android:id="@+id/toolbar"-->
+        <!--layout="@layout/upper_bar">-->
+    <!--</include>-->
 
 
     <android.support.design.widget.FloatingActionButton

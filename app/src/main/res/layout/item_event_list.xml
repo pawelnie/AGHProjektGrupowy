@@ -39,6 +39,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:maxLength="100"
                 android:text="Lorem Ipsum is simply dummy text of the printing "
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -47,27 +48,27 @@
 
             <TextView
                 android:id="@+id/text_location"
-                android:layout_width="0dp"
+                android:layout_width="158dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Lorem Ipsum is simply dummy text of the printing "
+                android:text="Krakow"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text_date"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/text_description" />
 
             <TextView
                 android:id="@+id/text_date"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="Lorem Ipsum is simply dummy text of the printing "
+                android:text="12.12.1212"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/text_location"
-                app:layout_constraintTop_toBottomOf="@+id/text_location" />
+                app:layout_constraintTop_toBottomOf="@+id/text_description" />
 
             <ImageView
                 android:id="@+id/imageView2"

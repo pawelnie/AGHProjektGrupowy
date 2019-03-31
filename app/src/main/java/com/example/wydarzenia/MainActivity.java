@@ -43,12 +43,12 @@ public class MainActivity extends ActivityWithMenu
 //        TODO
 //        App is crashing on below method while users skip login (EVENTS button)
 //        Comment below 2 lines before building the app to avoid this issue
-        mAuth = FirebaseAuth.getInstance();
-        userID = mAuth.getInstance().getCurrentUser().getUid();
+//        mAuth = FirebaseAuth.getInstance();
+//        userID = mAuth.getInstance().getCurrentUser().getUid();
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -86,10 +86,10 @@ public class MainActivity extends ActivityWithMenu
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
