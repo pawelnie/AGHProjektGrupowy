@@ -5,6 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClientInstance {
     private static Retrofit retrofit;
+//TODO -> Network
     private static final String BASE_URL = "http://eventsapp.ovh";
     //www works with emulator and device: http://eventsapp.ovh
     //address only for emulator http://10.0.2.2:8080

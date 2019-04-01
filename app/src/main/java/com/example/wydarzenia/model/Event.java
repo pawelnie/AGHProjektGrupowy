@@ -25,6 +25,12 @@ public class Event {
     private String category2;
     @SerializedName("category3")
     private String category3;
+    @SerializedName("signupid")
+    private String signupid;
+    @SerializedName("userid")
+    private String userid;
+    @SerializedName("eventid")
+    private String eventid;
 
 
 
@@ -35,7 +41,7 @@ public class Event {
     }
 
     public Event(String title, String description, String location, String latitude, String longitude,
-                 String date, String photoid, String category1, String category2, String category3) {
+                 String date, String photoid, String category1, String category2, String category3, String signupid, String userid, String eventid) {
         this.title = title;
         this.description = description;
         this.location = location;
@@ -46,6 +52,10 @@ public class Event {
         this.category1 = category1;
         this.category2 = category2;
         this.category3 = category3;
+        this.signupid = signupid;
+        this.userid = userid;
+        this.eventid = eventid;
+
     }
 
     public String getLocation() {
@@ -135,5 +145,30 @@ public class Event {
     public void setCategory3(String category3) {
         this.category3 = category3;
     }
+
+    public String getSignupid() {
+        return signupid;
+    }
+
+    public void setSignupid(String signupid) {
+        this.signupid = signupid;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getEventid() {
+        return eventid;
+    }
+
+    public void setEventid(String eventid) {
+        this.eventid = eventid;
+    }
+
 
 }
