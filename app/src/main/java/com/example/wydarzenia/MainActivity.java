@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import com.example.wydarzenia.adapter.RetrofitRecyclerAdapter;
 import com.example.wydarzenia.model.Event;
+import com.example.wydarzenia.model.User;
 import com.example.wydarzenia.network.GetDataService;
 import com.example.wydarzenia.network.RetrofitClientInstance;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,7 +34,14 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView recyclerView2;
 
     private FirebaseAuth mAuth;
-    private String userID;
+    private String userFireID;
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public int userID;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,32 +60,11 @@ public class MainActivity extends AppCompatActivity
         });
         /*Get Firebase ID*/
         mAuth = FirebaseAuth.getInstance();
-        userID = mAuth.getInstance().getCurrentUser().getUid();
+        userFireID = mAuth.getInstance().getCurrentUser().getUid();
 
-        /*Create handle for the RetrofitInstance interface*/
-        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-//        Call<List<Event>> call = service.getAllEvent();
-        Call<List<Event>> call = service.getUserEvents(6);
-        call.enqueue(new Callback<List<Event>>() {
-            @Override
-            public void onResponse(Call<List<Event>> call, Response<List<Event>> response) {
-                generateDataList(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<List<Event>> call, Throwable t) {
-                if (t instanceof IOException) {
-                    Toast.makeText(MainActivity.this, "this is an actual network failure :( inform the user and possibly retry", Toast.LENGTH_SHORT).show();
-                    // logging probably not necessary
-                }
-                else {
-                    Toast.makeText(MainActivity.this, "conversion issue! big problems :(", Toast.LENGTH_SHORT).show();
-                    // todo log to some central bug tracking service
-                }
-            }
-        });
-
-
+        /**getID
+         * getEvents **/
+        getUserID();
 
 
 
@@ -93,6 +80,59 @@ public class MainActivity extends AppCompatActivity
         //TODO old recycler remaining to removal if new works
        // initializeContent();
     }
+    public void getUserID() {
+
+        /*Create handle for the RetrofitInstance interface*/
+        GetDataService service1 = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        /*Getting all User data*/
+        Call<List<User>> userCall = service1.getUser(userFireID);
+        userCall.enqueue(new Callback<List<User>>() {
+
+            @Override
+            public void onResponse(Call<List<User>> userCall, Response<List<User>> response1) {
+                setUserID(response1.body().get(0).getId());
+                getUsersEvents(userID);
+
+            }
+            @Override
+            public void onFailure(Call<List<User>> userCall, Throwable t) {
+                if (t instanceof IOException) {
+                    Toast.makeText(MainActivity.this, "this is an actual network failure :( inform the user and possibly retry", Toast.LENGTH_SHORT).show();
+                    // logging probably not necessary
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "conversion issue! big problems :(", Toast.LENGTH_SHORT).show();
+                    // todo log to some central bug tracking service
+                }
+            }
+        });
+
+    }
+    public void getUsersEvents(int userID) {
+        GetDataService service2 = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<List<Event>> call = service2.getUserEvents(userID);
+        call.enqueue(new Callback<List<Event>>() {
+            @Override
+            public void onResponse(Call<List<Event>> call, Response<List<Event>> response2) {
+                generateDataList(response2.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Event>> call, Throwable t) {
+                if (t instanceof IOException) {
+                    Toast.makeText(MainActivity.this, "this is an actual network failure :( inform the user and possibly retry", Toast.LENGTH_SHORT).show();
+                    // logging probably not necessary
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "conversion issue! big problems :(", Toast.LENGTH_SHORT).show();
+                    // todo log to some central bug tracking service
+                }
+            }
+        });
+    }
+
+
+
     /*Method to generate List of data using RecyclerView with custom adapter*/
     private void generateDataList(List<Event> eventList) {
         recyclerView2 = findViewById(R.id.recycler_events);

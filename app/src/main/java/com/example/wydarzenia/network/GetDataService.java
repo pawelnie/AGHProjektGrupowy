@@ -12,7 +12,8 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface GetDataService {
-    /*Get Events with ID = "id"*/
+
+    /*Get Event with event.ID = "id"*/
     @GET("/event/{id}")
     Call<Event> getEvent(@Path("id") int id);
 
@@ -23,13 +24,13 @@ public interface GetDataService {
     @POST("/user")
     Call<User> saveUser(@Body User user);
 
-    /*Get Events with ID = "id"*/
+    /*Get all Events for user with user.ID = "userid"*/
     @POST("/event/userevents/{userid}")
     Call<List<Event>> getUserEvents(@Path("userid") int userid);
 
 
-    /*Get User info by his fireid*/
-    @GET("/id/{fireid}")
-    Call<User> getUser(@Path("fireid") String fireid);
+    /*Get User info by his user.fireid*/
+    @GET("/user/id/{fireid}")
+    Call<List<User>> getUser(@Path("fireid") String fireid);
 
 }
