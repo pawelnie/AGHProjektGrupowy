@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public int userID;
+    /**To be used to store al user data that is already available via getUserID method**/
     private User user;
 
     @Override
@@ -58,12 +59,13 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-        /*Get Firebase ID*/
+
+        /**Get Firebase ID**/
         mAuth = FirebaseAuth.getInstance();
         userFireID = mAuth.getInstance().getCurrentUser().getUid();
 
-        /**getID
-         * getEvents **/
+        /**This method retrofit request User data including his id.
+         * Then calls another retrofit method providing it with user.id to. Second method pulls all users events**/
         getUserID();
 
 
@@ -77,8 +79,6 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //TODO old recycler remaining to removal if new works
-       // initializeContent();
     }
     public void getUserID() {
 
@@ -141,16 +141,7 @@ public class MainActivity extends AppCompatActivity
         recyclerView2.setLayoutManager(layoutManager);
         recyclerView2.setAdapter(adapter2);
     }
-    //TODO old recycler remaining to removal if new works
-//    private void initializeContent() {
-//
-//        // set up the RecyclerView
-//        RecyclerView recyclerView = findViewById(R.id.recycler_events);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        adapter = new RecyclerAdapterEvents(this, DataManagerEvents.getInstance().getEvents());
-////                adapter.setClickListener(this);
-//        recyclerView.setAdapter(adapter);
-//    }
+
 
     @Override
     public void onBackPressed() {
