@@ -1,6 +1,7 @@
 package com.example.wydarzenia.network;
 
 import com.example.wydarzenia.model.Event;
+import com.example.wydarzenia.model.SignUp;
 import com.example.wydarzenia.model.User;
 
 import java.util.List;
@@ -32,5 +33,9 @@ public interface GetDataService {
     /*Get User info by his user.fireid*/
     @GET("/user/id/{fireid}")
     Call<List<User>> getUser(@Path("fireid") String fireid);
+
+    @POST("/signup")
+    Call<SignUp> signUpUser(@Body SignUp singUp);
+
 
 }

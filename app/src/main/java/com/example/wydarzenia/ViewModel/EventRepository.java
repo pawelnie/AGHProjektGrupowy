@@ -1,6 +1,5 @@
 package com.example.wydarzenia.ViewModel;
 
-import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
@@ -8,8 +7,6 @@ import com.example.wydarzenia.model.Event;
 import com.example.wydarzenia.model.EventCache;
 import com.example.wydarzenia.network.GetDataService;
 import com.example.wydarzenia.network.RetrofitClientInstance;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,9 +18,6 @@ public class EventRepository {
 
     private GetDataService dataService;
 
-    //future to implement
-    private EventCache eventCache;
-
 //    private LiveData<List<Event>> allEvents;
 //
 //    public EventRepository(Application application){
@@ -31,10 +25,11 @@ public class EventRepository {
 //    }
 
     public LiveData<Event> getEvent(int eventId){
-//        LiveData<Event> cached = eventCache.get(eventId);
-//        if(cached != null){
-//            return cached;
-//        }
+        LiveData<Event> cached = EventCache.getInstance().get(eventId);
+        if(cached != null){
+            System.out.println("using cache");
+            return cached;
+        }
 
         final MutableLiveData<Event> data = new MutableLiveData<>();
         dataService = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
