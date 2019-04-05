@@ -2,12 +2,18 @@
     <string name="app_name">Events</string>
     <string name="button_login">Log In</string>
     <string name="title_activity_home">Home</string>
-    <string name="username">username</string>
-    <string name="email">email</string>
+    <string name="username">Username</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="home">Homelocation</string>
+    <string name="birth">Date of Birth</string>
+    <string name="phone">Phone Number</string>
+    <string name="email">Email</string>
     <string name="password">password</string>
     <string name="title_activity_register">Sign up</string>
     <string name="register">Register</string>
     <string name="events">Events</string>
+    <string name="msg_token_fmt">token TOKEN</string>
 
     <!--Main view for searching through activities - Michal Matuszewski-->
     <string name="event_list_title">Events in your area</string>

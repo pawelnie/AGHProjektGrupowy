@@ -2,15 +2,17 @@ package com.example.wydarzenia;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.wydarzenia.ViewModel.UserViewModel;
-import com.example.wydarzenia.model.User;
 import com.example.wydarzenia.settingsdata.SettingsData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,6 +23,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailET, passwordET;
+    private ProgressBar progressBar;
+    private Button loginButton;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
@@ -37,9 +41,19 @@ public class LoginActivity extends AppCompatActivity {
 
         emailET = findViewById(R.id.usernameTE);
         passwordET = findViewById(R.id.passwordTE);
+        loginButton = findViewById(R.id.loginButton);
+        progressBar = findViewById(R.id.progressLoginBar);
         mAuth = FirebaseAuth.getInstance();
 
         if (mAuth.getCurrentUser() != null){
+
+            /*MM added to cache user*/
+            userViewModel.init(mAuth.getCurrentUser().getUid());
+
+            SettingsData.getInstance(LoginActivity.this).setUser(
+                    userViewModel.getUserInfo());
+            /*MM added to cache user*/
+
             startActivity(new Intent(getApplicationContext(),
                     MainActivity.class));
         }
@@ -48,13 +62,27 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void buttonLogin(View view) {
+        loginButton.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+
         String Email = emailET.getText().toString().trim();
         String Password = passwordET.getText().toString().trim();
+        if (TextUtils.isEmpty(Email)){
+            Toast.makeText(this, "Email Field is Empty", Toast.LENGTH_SHORT).show();
+            resetVisibility();
+            return;
+        }
+        if (TextUtils.isEmpty(Password)){
+            Toast.makeText(this, "Password Field is Empty", Toast.LENGTH_SHORT).show();
+            resetVisibility();
+            return;
+        }
         mAuth.signInWithEmailAndPassword(Email, Password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        resetVisibility();
                         if (task.isSuccessful()){
                             currentUser = mAuth.getCurrentUser();
 
@@ -92,9 +120,14 @@ public class LoginActivity extends AppCompatActivity {
 
     //MM-> tylko do debuggowania pojedynczej karty evenu
     public void goToEvent(View view){
-        Intent intent = new Intent(LoginActivity.this, EventEntryActivity.class);
+        Intent intent = new Intent(LoginActivity.this, UserInfoActivity.class);
         intent.putExtra("eid", "1");
         startActivity(intent);
+    }
+
+    private void resetVisibility(){
+        loginButton.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
     }
 
 }

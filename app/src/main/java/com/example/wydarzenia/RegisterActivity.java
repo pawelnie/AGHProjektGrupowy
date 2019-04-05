@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.wydarzenia.model.User;
@@ -26,6 +28,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private EditText emailET, passwordET, usernameET, nameET, lastnameET, homeET, birthET, phoneET;
+    private Button registerButton;
+    private ProgressBar progressBar;
     GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
     String responseStr;
     private final String REG = "reg";
@@ -43,21 +47,27 @@ public class RegisterActivity extends AppCompatActivity {
         homeET = findViewById(R.id.newHomelocation);
         birthET = findViewById(R.id.newBirthdate);
         phoneET = findViewById(R.id.newPhoneNumber);
+        registerButton = findViewById(R.id.registerButton);
+        progressBar = findViewById(R.id.progressRegBar);
+
         mAuth = FirebaseAuth.getInstance();
     }
 
 
     public void buttonRegister(View view) {
-
+        registerButton.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
 
         String Email = emailET.getText().toString().trim();
         String Password = passwordET.getText().toString().trim();
         if (TextUtils.isEmpty(Email)){
-            Toast.makeText(this, "A Field is Empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Email Field is Empty", Toast.LENGTH_SHORT).show();
+            resetVisibility();
             return;
         }
         if (TextUtils.isEmpty(Password)){
-            Toast.makeText(this, "A Field is Empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password Field is Empty", Toast.LENGTH_SHORT).show();
+            resetVisibility();
             return;
         }
         mAuth.createUserWithEmailAndPassword(Email, Password)
@@ -80,14 +90,17 @@ public class RegisterActivity extends AppCompatActivity {
                                 //start Profile Activity here
                                 Toast.makeText(RegisterActivity.this, "registration successful",
                                         Toast.LENGTH_SHORT).show();
+                                resetVisibility();
                                 finish();
                                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                             }else{
                                 Toast.makeText(RegisterActivity.this, "Couldn't register, try again",
                                         Toast.LENGTH_SHORT).show();
+                                resetVisibility();
                             }
                         }catch (Exception e){
                             e.printStackTrace();
+                            resetVisibility();
                         }
                     }
                 });
@@ -106,6 +119,11 @@ public class RegisterActivity extends AppCompatActivity {
                 Log.d(REG, "onFailure:" + t.toString());
             }
         });
+    }
+
+    private void resetVisibility(){
+        registerButton.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
     }
 }
 

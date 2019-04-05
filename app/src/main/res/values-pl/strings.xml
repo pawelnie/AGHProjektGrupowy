@@ -3,8 +3,14 @@
     <string name="app_name">Wydarzenia</string>
     <string name="button_login">Zaloguj</string>
     <string name="title_activity_home">Strona Główna</string>
-    <string name="username">email</string>
-    <string name="password">hasło</string>
+    <string name="username">Nazwa Użytkownika</string>
+    <string name="firstname">Imię</string>
+    <string name="lastname">Nazwisko</string>
+    <string name="home">Miejsce zamieszkania</string>
+    <string name="birth">Data urodzenia</string>
+    <string name="phone">Numer telefonu</string>
+    <string name="email">Email</string>
+    <string name="password">Hasło</string>
     <string name="title_activity_register">Zaloguj</string>
     <string name="register">Zarejestruj</string>
     <string name="events">Events</string>
