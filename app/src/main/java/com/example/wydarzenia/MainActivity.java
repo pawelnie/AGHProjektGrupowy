@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -191,6 +192,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
 //        // Inflate the menu; this adds items to the action bar if it is present.
@@ -220,17 +222,18 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_main_activity) {
-            // Handle the camera action
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_all_events) {
-
-        } else if (id == R.id.nav_slideshow) {
+            Intent intent = new Intent(getApplicationContext(), AllEventsActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_map) {
+            //unused menu item
 
         } else if (id == R.id.nav_manage) {
             Intent intent = new Intent(getApplicationContext(), UserInfoActivity.class);
             //intent.putExtra("User", user);
             startActivity(intent);
-
-        } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
             FirebaseAuth.getInstance().signOut();
