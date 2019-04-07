@@ -1,6 +1,5 @@
 package com.example.wydarzenia;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,8 +11,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.wydarzenia.ViewModel.UserViewModel;
-import com.example.wydarzenia.settingsdata.SettingsData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,15 +25,11 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
-    UserViewModel userViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        //MM added
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
 
 
         emailET = findViewById(R.id.usernameTE);
@@ -47,12 +40,6 @@ public class LoginActivity extends AppCompatActivity {
 
         if (mAuth.getCurrentUser() != null){
 
-            /*MM added to cache user*/
-            userViewModel.init(mAuth.getCurrentUser().getUid());
-
-            SettingsData.getInstance(LoginActivity.this).setUser(
-                    userViewModel.getUserInfo());
-            /*MM added to cache user*/
 
             startActivity(new Intent(getApplicationContext(),
                     MainActivity.class));
@@ -87,12 +74,6 @@ public class LoginActivity extends AppCompatActivity {
                             currentUser = mAuth.getCurrentUser();
 
 
-                            /*MM added to cache user*/
-                            userViewModel.init(currentUser.getUid());
-
-                            SettingsData.getInstance(view.getContext()).setUser(
-                                    userViewModel.getUserInfo());
-                            /*MM added to cache user*/
 
 
                             finish();

@@ -1,5 +1,6 @@
 package com.example.wydarzenia;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,6 +25,7 @@ import com.example.wydarzenia.model.Event;
 import com.example.wydarzenia.model.User;
 import com.example.wydarzenia.network.GetDataService;
 import com.example.wydarzenia.network.RetrofitClientInstance;
+import com.example.wydarzenia.settingsdata.SettingsData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity
     private String userFireID;
     private final String FCM = "FCM";
 
+    private Context context;
+
     public void setUserID(int userID) {
         this.userID = userID;
     }
@@ -58,6 +62,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        context = this;
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -123,6 +130,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<List<User>> userCall, Response<List<User>> response1) {
                 user = response1.body().get(0);
+                SettingsData.getInstance(context).setUser(user);
                 setUserID(response1.body().get(0).getId());
                 getUsersEvents(userID);
                 setNav();

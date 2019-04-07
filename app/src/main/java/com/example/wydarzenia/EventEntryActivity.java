@@ -1,7 +1,10 @@
 package com.example.wydarzenia;
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +16,11 @@ import com.example.wydarzenia.model.User;
 import com.example.wydarzenia.network.GetDataService;
 import com.example.wydarzenia.network.RetrofitClientInstance;
 import com.example.wydarzenia.settingsdata.SettingsData;
+import com.google.gson.internal.bind.SqlDateTypeAdapter;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,6 +35,11 @@ public class EventEntryActivity extends ActivityWithMenu {
     private TextView eventInfo;
     private ImageView eventImage;
     private FloatingActionButton fab;
+    private TextView countDown;
+    private CountDownTimer countDownTimer;
+    private Date startDate;
+    private long timeLeft;
+
     int eventId;
     Integer responseId;
     int userId;
@@ -46,8 +59,10 @@ public class EventEntryActivity extends ActivityWithMenu {
         eventInfo = (TextView) findViewById(R.id.eventInfo);
         eventImage = (ImageView) findViewById(R.id.eventImage);
         fab = (FloatingActionButton) findViewById(R.id.fabEvent);
+        countDown = (TextView) findViewById(R.id.countDownText);
 
         //Adding event class
+
 
         userId = SettingsData.getInstance(this).getUser().getValue().getId();
 
@@ -59,7 +74,16 @@ public class EventEntryActivity extends ActivityWithMenu {
             eventTitle.setText(event.getTitle());
             eventDescription.setText(event.getDescription());
             eventInfo.setText(event.getDate());
-                });
+            try{
+                startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(event.getDate());
+            }catch (ParseException e){
+                Log.d("EventsApp", "Not the right format of the date");
+            }
+            startTimer();
+
+
+
+        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +100,7 @@ public class EventEntryActivity extends ActivityWithMenu {
                 eventId)).enqueue(new Callback<SignUp>() {
             @Override
             public void onResponse(Call<SignUp> call, Response<SignUp> response) {
-                responseId = Integer.parseInt(response.toString());
+//                responseId = Integer.parseInt(response.toString());
                 Toast.makeText(EventEntryActivity.this, "Signed up!", Toast.LENGTH_SHORT).show();
 
             }
@@ -86,6 +110,39 @@ public class EventEntryActivity extends ActivityWithMenu {
                 Toast.makeText(EventEntryActivity.this, "Sing up failed!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void startTimer(){
+        Date now = new Date();
+        System.out.println(now.toString());
+        System.out.println(now.getTime());
+        System.out.println(startDate.toString());
+        System.out.println(startDate.getTime());
+        timeLeft = startDate.getTime() - now.getTime();
+        System.out.println(timeLeft/8640000);
+        System.out.println(timeLeft % 86400000 % 3600000 % 60000 / 1000);
+        countDownTimer = new CountDownTimer(timeLeft, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeft = millisUntilFinished;
+                updateTimer();
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+    }
+
+    private void updateTimer(){
+        int days = (int) (timeLeft / 86400000);
+        int hours = (int) (timeLeft % 86400000 / 3600000);
+        int minutes = (int) (timeLeft % 86400000 % 3600000 / 60000);
+        int seconds = (int) (timeLeft % 86400000 % 3600000 % 60000 / 1000);
+        String fullSentence = String.format("Remaining: %d days, %d hours, %d minutes and %d seconds",
+            days, hours, minutes, seconds);
+        countDown.setText(fullSentence);
     }
 }
 

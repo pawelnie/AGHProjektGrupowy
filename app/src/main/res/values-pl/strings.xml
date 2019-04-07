@@ -14,6 +14,7 @@
     <string name="title_activity_register">Zaloguj</string>
     <string name="register">Zarejestruj</string>
     <string name="events">Events</string>
+    <string name="msg_token_fmt">token TOKEN</string>
 
     <!--Main view for searching through activities - Michal Matuszewski-->
     <string name="event_list_title">Wydarzenia w twojej okolicy</string>
@@ -25,6 +26,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Ustawienia</string>
     <string name="show_map">Pokaż Mapę</string>
-
+    <string name="title_activity_all_events">Wszystkie Eventy</string>
+    <string name="event_over">Event już się zakończył</string>
 
 </resources>

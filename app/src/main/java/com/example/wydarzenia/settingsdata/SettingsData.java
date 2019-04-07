@@ -1,11 +1,11 @@
 package com.example.wydarzenia.settingsdata;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
-import com.example.wydarzenia.ViewModel.UserViewModel;
 import com.example.wydarzenia.model.User;
 
 public class SettingsData {
@@ -18,6 +18,7 @@ public class SettingsData {
     private SharedPreferences sharedPreferences;
     private String NIGHTMODE;
     private LiveData<User> user;
+
     //Private constructor as per singleton requirements. Constructor takes context as the function
     //getSharedPreferences has to come from context.
     private SettingsData(Context context){
@@ -61,7 +62,11 @@ public class SettingsData {
         return user;
     }
 
-    public void setUser(LiveData<User> user) {
-        this.user = user;
+    public void setUser(User user) {
+        MutableLiveData<User> data = new MutableLiveData<>();
+        data.setValue(user);
+        this.user = data;
     }
+
+
 }
