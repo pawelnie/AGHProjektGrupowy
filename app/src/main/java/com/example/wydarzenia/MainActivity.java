@@ -222,15 +222,17 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_all_events) {
             Intent intent = new Intent(getApplicationContext(), AllEventsActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_map) {
-            //unused menu item
+        } else if (id == R.id.nav_playground) {
+            Intent intent = new Intent(getApplicationContext(), PlaygroundActivity.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_userinfo) {
             Intent intent = new Intent(getApplicationContext(), UserInfoActivity.class);
             //intent.putExtra("User", user);
             startActivity(intent);
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_signout) {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
