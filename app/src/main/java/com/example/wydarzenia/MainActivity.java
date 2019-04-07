@@ -58,16 +58,10 @@ public class MainActivity extends AppCompatActivity
     /**To be used to store all user data that is already available via getUserID method**/
     private User user;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -87,7 +81,6 @@ public class MainActivity extends AppCompatActivity
         /**This method retrofit request User data including his id.
          * Then calls another retrofit method providing it with user.id to. Second method pulls all users events**/
         getUserID();
-
 
 
 
@@ -226,9 +219,9 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_main_activity) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_all_events) {
 
         } else if (id == R.id.nav_slideshow) {
 
