@@ -8,4 +8,11 @@
     tools:context=".AllEventsActivity"
     tools:showIn="@layout/activity_all_events">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_all_events"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:listitem="@layout/item_all_events_list" />
 </android.support.constraint.ConstraintLayout>

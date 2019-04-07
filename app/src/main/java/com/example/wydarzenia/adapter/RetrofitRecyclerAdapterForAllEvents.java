@@ -9,17 +9,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.wydarzenia.EventEntryActivity;
-import com.example.wydarzenia.MainActivity;
 import com.example.wydarzenia.R;
 import com.example.wydarzenia.model.Event;
 
 import java.util.List;
 
-public class RetrofitRecyclerAdapter extends RecyclerView.Adapter<RetrofitRecyclerAdapter.CustomViewHolder>{
+public class RetrofitRecyclerAdapterForAllEvents extends RecyclerView.Adapter<RetrofitRecyclerAdapterForAllEvents.CustomViewHolder>{
     private List<Event> dataList;
     private Context context;
 
-    public RetrofitRecyclerAdapter(Context context, List<Event> dataList){
+    public RetrofitRecyclerAdapterForAllEvents(Context context, List<Event> dataList){
         this.context = context;
         this.dataList = dataList;
     }
@@ -35,10 +34,10 @@ public class RetrofitRecyclerAdapter extends RecyclerView.Adapter<RetrofitRecycl
         CustomViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
-            mTitle = mView.findViewById(R.id.text_title);
-            mDescription = mView.findViewById(R.id.text_description);
-            mLocation = mView.findViewById(R.id.text_location);
-            mDate = mView.findViewById(R.id.text_date);
+            mTitle = mView.findViewById(R.id.text_title_ae);
+            mDescription = mView.findViewById(R.id.text_description_ae);
+            mLocation = mView.findViewById(R.id.text_location_ae);
+            mDate = mView.findViewById(R.id.text_date_ae);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -54,7 +53,7 @@ public class RetrofitRecyclerAdapter extends RecyclerView.Adapter<RetrofitRecycl
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_event_list, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_all_events_list, parent, false);
         return new CustomViewHolder(view);
 
 

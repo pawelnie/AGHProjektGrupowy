@@ -20,7 +20,7 @@ public interface GetDataService {
 
     /*Get all Events*/
     @GET("/event")
-    Call<List<Event>> getAllEvent();
+    Call<List<Event>> getAllEvents();
 
     @POST("/user")
     Call<User> saveUser(@Body User user);

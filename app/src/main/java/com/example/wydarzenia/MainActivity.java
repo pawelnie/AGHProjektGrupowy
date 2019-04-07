@@ -14,13 +14,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.wydarzenia.adapter.RetrofitRecyclerAdapter;
+import com.example.wydarzenia.adapter.RetrofitRecyclerAdapterForMainActivity;
 import com.example.wydarzenia.model.Event;
 import com.example.wydarzenia.model.User;
 import com.example.wydarzenia.network.GetDataService;
@@ -40,15 +39,11 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private RecyclerAdapterEvents adapter;
-    private RetrofitRecyclerAdapter adapter2;
-    private RecyclerView recyclerView2;
-
+    private RetrofitRecyclerAdapterForMainActivity adapter;
+    private RecyclerView recyclerView;
     private TextView navEmail, navUsername;
-
     private FirebaseAuth mAuth;
     private String userFireID;
-
     private final String FCM = "FCM";
 
     public void setUserID(int userID) {
@@ -79,7 +74,7 @@ public class MainActivity extends AppCompatActivity
         mAuth = FirebaseAuth.getInstance();
         userFireID = mAuth.getInstance().getCurrentUser().getUid();
 
-        /**This method retrofit request User data including his id.
+        /**This retrofit method  requests User data including his id.
          * Then calls another retrofit method providing it with user.id to. Second method pulls all users events**/
         getUserID();
 
@@ -174,11 +169,11 @@ public class MainActivity extends AppCompatActivity
 
     /*Method to generate List of data using RecyclerView with custom adapter*/
     private void generateDataList(List<Event> eventList) {
-        recyclerView2 = findViewById(R.id.recycler_events);
-        adapter2 = new RetrofitRecyclerAdapter(this, eventList);
+        recyclerView = findViewById(R.id.recycler_events);
+        adapter = new RetrofitRecyclerAdapterForMainActivity(this, eventList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        recyclerView2.setLayoutManager(layoutManager);
-        recyclerView2.setAdapter(adapter2);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
 
