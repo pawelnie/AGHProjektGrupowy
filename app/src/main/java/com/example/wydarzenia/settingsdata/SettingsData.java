@@ -39,7 +39,6 @@ public class SettingsData {
         if (settingsInstance == null) { //if there is no instance available... create new one
             //making it synchronized - now it is thread-safe
             synchronized (SettingsData.class) {
-                System.out.println("creating=================================11111111111111");
                 if (settingsInstance == null) settingsInstance = new SettingsData(context);
             }
         }
@@ -60,13 +59,10 @@ public class SettingsData {
     }
 
     public User getUser() {
-        System.out.println("getting user 222222222222222222222");
-        System.out.println(user.toString());
         return user;
     }
 
     public void setUser(User user) {
-        System.out.println("setting useerr xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         this.user = user;
     }
 

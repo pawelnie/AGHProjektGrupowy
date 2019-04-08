@@ -14,6 +14,8 @@ import com.example.wydarzenia.model.Event;
 import com.example.wydarzenia.network.GetDataService;
 import com.example.wydarzenia.network.RetrofitClientInstance;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,6 +72,7 @@ public class AllEventsActivity extends AppCompatActivity {
 
     private void generateDataList(List<Event> eventList) {
         recyclerView = findViewById(R.id.recycler_all_events);
+        Collections.sort(eventList);
         adapter = new RetrofitRecyclerAdapterForAllEvents(this, eventList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(AllEventsActivity.this);
         recyclerView.setLayoutManager(layoutManager);

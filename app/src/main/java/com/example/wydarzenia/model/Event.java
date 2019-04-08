@@ -2,7 +2,11 @@ package com.example.wydarzenia.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Event {
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Event implements Comparable<Event>{
     @SerializedName("id")
     private Integer id;
     @SerializedName("title")
@@ -170,5 +174,17 @@ public class Event {
         this.eventid = eventid;
     }
 
+    @Override
+    public int compareTo(Event o) {
+        try{
+            Date comparedEventDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(o.getDate());
+            Date thisEvent = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(this.date);
+            int compared = (int) ((thisEvent.getTime()/1000) - (comparedEventDate.getTime()/1000));
+            return compared;
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+        return 0;
 
+    }
 }
