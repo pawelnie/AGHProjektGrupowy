@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,6 +32,8 @@ import retrofit2.Response;
 public class EventEntryActivity extends ActivityWithMenu {
 
     private final String EID_KEY = "eid";
+    private final String LAT = "lat";
+    private final String LON = "lon";
     private TextView eventTitle;
     private TextView eventDescription;
     private TextView eventInfo;
@@ -39,6 +43,7 @@ public class EventEntryActivity extends ActivityWithMenu {
     private CountDownTimer countDownTimer;
     private Date startDate;
     private long timeLeft;
+
 
     int eventId;
     Integer responseId;
@@ -68,6 +73,13 @@ public class EventEntryActivity extends ActivityWithMenu {
 
         eventId = Integer.parseInt(getIntent().getStringExtra(EID_KEY));
 
+        //MAP
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        EventMapFragment eventMapFragment = new EventMapFragment();
+        Bundle bundle = new Bundle();
+        //EO Map
+
         eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
         eventViewModel.init(eventId);
         eventViewModel.getEventInfo().observe(this, event -> {
@@ -80,6 +92,11 @@ public class EventEntryActivity extends ActivityWithMenu {
                 Log.d("EventsApp", "Not the right format of the date");
             }
             startTimer();
+            bundle.putDouble(LAT, Double.parseDouble(event.getLatitude()));
+            bundle.putDouble(LON, Double.parseDouble(event.getLongitude()));
+            eventMapFragment.setArguments(bundle);
+            fragmentTransaction.add(R.id.map_container, eventMapFragment);
+            fragmentTransaction.commit();
 
 
 
@@ -92,6 +109,9 @@ public class EventEntryActivity extends ActivityWithMenu {
                 signUpUser(userId, eventId);
             }
         });
+
+
+
 
     }
 
