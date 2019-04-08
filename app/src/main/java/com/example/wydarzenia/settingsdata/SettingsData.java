@@ -17,7 +17,7 @@ public class SettingsData {
     private String PREFS;
     private SharedPreferences sharedPreferences;
     private String NIGHTMODE;
-    private LiveData<User> user;
+    private User user;
 
     //Private constructor as per singleton requirements. Constructor takes context as the function
     //getSharedPreferences has to come from context.
@@ -39,6 +39,7 @@ public class SettingsData {
         if (settingsInstance == null) { //if there is no instance available... create new one
             //making it synchronized - now it is thread-safe
             synchronized (SettingsData.class) {
+                System.out.println("creating=================================11111111111111");
                 if (settingsInstance == null) settingsInstance = new SettingsData(context);
             }
         }
@@ -58,14 +59,15 @@ public class SettingsData {
         return sharedPreferences.getBoolean(NIGHTMODE, false);
     }
 
-    public LiveData<User> getUser() {
+    public User getUser() {
+        System.out.println("getting user 222222222222222222222");
+        System.out.println(user.toString());
         return user;
     }
 
     public void setUser(User user) {
-        MutableLiveData<User> data = new MutableLiveData<>();
-        data.setValue(user);
-        this.user = data;
+        System.out.println("setting useerr xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        this.user = user;
     }
 
 

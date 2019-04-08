@@ -10,7 +10,7 @@ import com.example.wydarzenia.settingsdata.SettingsData;
 
 public class UserInfoActivity extends AppCompatActivity {
     private TextView usernameTV, firstnameTV, lastnameTV, emailTV, phoneTV, birthTV, homeTV;
-    LiveData<User> user;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +28,13 @@ public class UserInfoActivity extends AppCompatActivity {
 
         //user = (User)getIntent().getSerializableExtra("User");
 
-        usernameTV.setText(user.getValue().getUsername());
-        firstnameTV.setText(user.getValue().getFirstname());
-        lastnameTV.setText(user.getValue().getLastname());
-        emailTV.setText(user.getValue().getEmail());
-        phoneTV.setText(user.getValue().getPhone());
-        birthTV.setText(user.getValue().getBirthdate());
-        homeTV.setText(user.getValue().getHomelocation());
+        usernameTV.setText(user.getUsername());
+        firstnameTV.setText(user.getFirstname());
+        lastnameTV.setText(user.getLastname());
+        emailTV.setText(user.getEmail());
+        phoneTV.setText(user.getPhone());
+        birthTV.setText(user.getBirthdate());
+        homeTV.setText(user.getHomelocation());
     }
 
 }

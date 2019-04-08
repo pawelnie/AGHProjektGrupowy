@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<List<User>> userCall, Response<List<User>> response1) {
                 user = response1.body().get(0);
+
                 SettingsData.getInstance(context).setUser(user);
                 setUserID(response1.body().get(0).getId());
                 getUsersEvents(userID);
