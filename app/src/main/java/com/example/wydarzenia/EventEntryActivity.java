@@ -1,5 +1,4 @@
 package com.example.wydarzenia;
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -15,11 +14,9 @@ import android.widget.Toast;
 import com.example.wydarzenia.ViewModel.EventViewModel;
 import com.example.wydarzenia.model.Event;
 import com.example.wydarzenia.model.SignUp;
-import com.example.wydarzenia.model.User;
 import com.example.wydarzenia.network.GetDataService;
 import com.example.wydarzenia.network.RetrofitClientInstance;
 import com.example.wydarzenia.settingsdata.SettingsData;
-import com.google.gson.internal.bind.SqlDateTypeAdapter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

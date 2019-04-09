@@ -6,21 +6,27 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.wydarzenia.EventEntryActivity;
 import com.example.wydarzenia.R;
 import com.example.wydarzenia.model.Event;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class RetrofitRecyclerAdapterForAllEvents extends RecyclerView.Adapter<RetrofitRecyclerAdapterForAllEvents.CustomViewHolder>{
+public class RetrofitRecyclerAdapterForAllEvents extends RecyclerView.Adapter<RetrofitRecyclerAdapterForAllEvents.CustomViewHolder>
+                                                    implements Filterable {
     private List<Event> dataList;
+    private List<Event> dataListFull;
     private Context context;
 
     public RetrofitRecyclerAdapterForAllEvents(Context context, List<Event> dataList){
         this.context = context;
         this.dataList = dataList;
+        this.dataListFull = new ArrayList<>(dataList);
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -96,4 +102,35 @@ public class RetrofitRecyclerAdapterForAllEvents extends RecyclerView.Adapter<Re
         return dataList.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        return listFilter;
+    }
+
+    private Filter listFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Event> filteredList = new ArrayList<>();
+            if(constraint == null || constraint.length() == 0){
+                filteredList.addAll(dataListFull);
+            }else{
+                String pattern = constraint.toString().toLowerCase().trim();
+                for(Event event : dataListFull) {
+                    if (event.getTitle().toLowerCase().contains(pattern)) {
+                        filteredList.add(event);
+                    }
+                }
+            }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            dataList.clear();
+            dataList.addAll((List)results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
