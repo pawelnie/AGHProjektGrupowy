@@ -17,6 +17,7 @@ import com.example.wydarzenia.model.SignUp;
 import com.example.wydarzenia.network.GetDataService;
 import com.example.wydarzenia.network.RetrofitClientInstance;
 import com.example.wydarzenia.settingsdata.SettingsData;
+import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,7 +43,7 @@ public class EventEntryActivity extends ActivityWithMenu {
     private CountDownTimer countDownTimer;
     private Date startDate;
     private long timeLeft;
-
+    String eventImageURL;
 
     int eventId;
     Integer responseId;
@@ -64,6 +65,8 @@ public class EventEntryActivity extends ActivityWithMenu {
         eventImage = (ImageView) findViewById(R.id.eventImage);
         fab = (FloatingActionButton) findViewById(R.id.fabEvent);
         countDown = (TextView) findViewById(R.id.countDownText);
+
+
 
 
         //initially hiding fab
@@ -89,6 +92,7 @@ public class EventEntryActivity extends ActivityWithMenu {
             eventTitle.setText(event.getTitle());
             eventDescription.setText(event.getDescription());
             eventInfo.setText(event.getDate());
+            eventImageURL = event.getPhotoid();
             try{
                 startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(event.getDate());
             }catch (ParseException e){
@@ -101,7 +105,8 @@ public class EventEntryActivity extends ActivityWithMenu {
             fragmentTransaction.add(R.id.map_container, eventMapFragment);
             fragmentTransaction.commit();
 
-
+//            TODO: Uncomment image rendering below
+//            Picasso.get().load(eventImageURL).into(eventImage);
 
         });
 
