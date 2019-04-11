@@ -27,7 +27,8 @@ import retrofit2.Response;
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private EditText emailET, passwordET, usernameET, nameET, lastnameET, homeET, birthET, phoneET;
+    private EditText emailET, passwordET, usernameET, nameET, lastnameET, homeET, birthET, phoneET,
+    birthMonthET, birthYearET;
     private Button registerButton;
     private ProgressBar progressBar;
     GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
@@ -45,7 +46,11 @@ public class RegisterActivity extends AppCompatActivity {
         nameET = findViewById(R.id.newFirstname);
         lastnameET = findViewById(R.id.newLastname);
         homeET = findViewById(R.id.newHomelocation);
+
         birthET = findViewById(R.id.newBirthdate);
+        birthMonthET = findViewById(R.id.newBirthMonth);
+        birthYearET = findViewById(R.id.newBirthYear);
+
         phoneET = findViewById(R.id.newPhoneNumber);
         registerButton = findViewById(R.id.registerButton);
         progressBar = findViewById(R.id.progressRegBar);
@@ -57,6 +62,10 @@ public class RegisterActivity extends AppCompatActivity {
     public void buttonRegister(View view) {
         registerButton.setVisibility(View.INVISIBLE);
         progressBar.setVisibility(View.VISIBLE);
+
+        String birthDateFull = birthYearET.getText().toString().trim() + "-" +
+                birthMonthET.getText().toString().trim() + "-" +
+                birthET.getText().toString().trim();
 
         String Email = emailET.getText().toString().trim();
         String Password = passwordET.getText().toString().trim();
@@ -82,7 +91,10 @@ public class RegisterActivity extends AppCompatActivity {
                                         lastnameET.getText().toString().trim(),
                                         nameET.getText().toString().trim(),
                                         usernameET.getText().toString().trim(),
-                                        birthET.getText().toString().trim(),
+
+                                        /*birthET.getText().toString().trim(),*/
+                                        birthDateFull,
+
                                         homeET.getText().toString().trim(),
                                         Email,
                                         phoneET.getText().toString().trim());

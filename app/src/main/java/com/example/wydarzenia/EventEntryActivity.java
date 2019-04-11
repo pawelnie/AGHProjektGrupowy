@@ -106,7 +106,7 @@ public class EventEntryActivity extends ActivityWithMenu {
             fragmentTransaction.commit();
 
 //            TODO: Uncomment image rendering below
-//            Picasso.get().load(eventImageURL).into(eventImage);
+            Picasso.get().load(eventImageURL).into(eventImage);
 
         });
 
