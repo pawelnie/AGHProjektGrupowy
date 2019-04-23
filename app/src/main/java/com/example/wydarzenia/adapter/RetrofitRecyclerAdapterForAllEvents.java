@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.wydarzenia.EventEntryActivity;
 import com.example.wydarzenia.R;
 import com.example.wydarzenia.model.Event;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,8 @@ public class RetrofitRecyclerAdapterForAllEvents extends RecyclerView.Adapter<Re
         TextView mDescription;
         TextView mLocation;
         TextView mDate;
+        ImageView mImage;
+        String mImageURL;
 
         CustomViewHolder(View itemView) {
             super(itemView);
@@ -44,6 +48,7 @@ public class RetrofitRecyclerAdapterForAllEvents extends RecyclerView.Adapter<Re
             mDescription = mView.findViewById(R.id.text_description_ae);
             mLocation = mView.findViewById(R.id.text_location_ae);
             mDate = mView.findViewById(R.id.text_date_ae);
+            mImage = mView.findViewById(R.id.imageView_ae);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -71,6 +76,7 @@ public class RetrofitRecyclerAdapterForAllEvents extends RecyclerView.Adapter<Re
         holder.mDescription.setText(dataList.get(position).getDescription());
         holder.mLocation.setText(dataList.get(position).getLocation());
         holder.mDate.setText(dataList.get(position).getDate());
+        Picasso.get().load(dataList.get(position).getPhotoid()).into(holder.mImage);
         holder.mCurrentPosition = position;
 
 
