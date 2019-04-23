@@ -1,5 +1,7 @@
 package com.example.wydarzenia;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +48,8 @@ public class EventEntryActivity extends ActivityWithMenu {
     private Date startDate;
     private long timeLeft;
     String eventImageURL;
+    String latitude;
+    String longitude;
 
     int eventId;
     Integer responseId;
@@ -66,6 +71,8 @@ public class EventEntryActivity extends ActivityWithMenu {
         eventImage = (ImageView) findViewById(R.id.eventImage);
         fab = (FloatingActionButton) findViewById(R.id.fabEvent);
         countDown = (TextView) findViewById(R.id.countDownText);
+        Button buttonNavigate = findViewById(R.id.button_navigate);
+        Button buttonShowOnMap = findViewById(R.id.button_show);
 
 
 
@@ -94,6 +101,9 @@ public class EventEntryActivity extends ActivityWithMenu {
             eventDescription.setText(event.getDescription());
             eventInfo.setText(event.getDate());
             eventImageURL = event.getPhotoid();
+            latitude = event.getLatitude();
+            longitude = event.getLongitude();
+
             try{
                 startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(event.getDate());
             }catch (ParseException e){
@@ -119,6 +129,31 @@ public class EventEntryActivity extends ActivityWithMenu {
             public void onClick(View v) {
 
                 signUpUser(userId, eventId);
+            }
+        });
+
+//TODO Navigation
+        buttonNavigate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println("Button Clicked");
+
+                String navTarget = "google.navigation:q=" + latitude + "," + longitude;
+                Uri gmmIntentUri = Uri.parse(navTarget);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
+
+//TODO Street View
+        buttonShowOnMap.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println("Button Clicked");
+                String navTarget = "google.streetview:cbll=" + latitude + "," + longitude;
+                Uri gmmIntentUri = Uri.parse(navTarget);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
             }
         });
 
