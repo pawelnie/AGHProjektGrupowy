@@ -3,6 +3,7 @@ package com.example.wydarzenia;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
 
 public class MessagingServices extends FirebaseMessagingService {
     public final String FCM = "FCM";
@@ -15,6 +16,11 @@ public class MessagingServices extends FirebaseMessagingService {
 //        throw new UnsupportedOperationException("Not yet implemented");
 //    }
 
+
+    @Override
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+    }
 
     /**
      * Called if InstanceID token is updated. This may occur if the security of

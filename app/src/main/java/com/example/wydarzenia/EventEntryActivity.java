@@ -1,9 +1,11 @@
 package com.example.wydarzenia;
+
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -20,6 +22,9 @@ import com.example.wydarzenia.model.SignUp;
 import com.example.wydarzenia.network.GetDataService;
 import com.example.wydarzenia.network.RetrofitClientInstance;
 import com.example.wydarzenia.settingsdata.SettingsData;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -129,6 +134,8 @@ public class EventEntryActivity extends ActivityWithMenu {
             public void onClick(View v) {
 
                 signUpUser(userId, eventId);
+                subscribeToFCMTopic(eventId);
+
             }
         });
 
@@ -230,6 +237,21 @@ public class EventEntryActivity extends ActivityWithMenu {
             }
         });
 
+    }
+
+    private void subscribeToFCMTopic(int topic){
+        FirebaseMessaging.getInstance().subscribeToTopic(Integer.toString(topic))
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "Subscribed to topic";
+                        if (!task.isSuccessful()) {
+                            msg = "Unsuccessful subscribe to topic";
+                        }
+                        Log.d("FBMessaging", msg);
+                        Toast.makeText(EventEntryActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
 
