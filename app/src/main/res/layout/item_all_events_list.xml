@@ -24,7 +24,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="2dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/samplepicture" />
@@ -34,7 +34,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:text="TextView"
                 android:textAppearance="@android:style/TextAppearance.Material.Large"
                 app:layout_constraintStart_toEndOf="@+id/imageView_ae"
@@ -45,9 +44,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="2dp"
-                android:text="TextView TextView TextV iewTex tViewT extView"
+                android:maxLines="3"
+                android:text="Java is a general-purpose programming language that is class-based, object-oriented, and specifically designed to have as few"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView_ae"
                 app:layout_constraintTop_toBottomOf="@+id/text_title_ae" />
