@@ -12,6 +12,8 @@ public class EventCache {
     //to be implemented - PLACEHOLDER HERE
     //SHOULD IMPLEMENT SOME KIND OF LIST TO HOLD ENTITIES
     private static volatile EventCache eventCache;
+
+    private List<Event> eventsSimple;
     private HashMap<Integer, LiveData<Event>> events;
     public LiveData<Event> get(int eventId) {
         return events.get(eventId);
@@ -44,6 +46,14 @@ public class EventCache {
         final MutableLiveData<Event> data = new MutableLiveData<>();
         data.setValue(event);
         events.put(event.getId(), data);
+    }
+
+    public void setSimpleList(List<Event> list){
+        eventsSimple = list;
+    }
+
+    public List<Event> getSimpleList(){
+        return eventsSimple;
     }
 
 

@@ -37,5 +37,9 @@ public interface GetDataService {
     @POST("/signup")
     Call<SignUp> signUpUser(@Body SignUp singUp);
 
+    /*Not yet implemented*/
+    @GET("/event/lat={lat}&lon={lon}")
+    Call<List<Event>> getNearbyEvents(@Path("lat") Double lat, @Path("lon") Double lon);
+
 
 }

@@ -99,12 +99,14 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //MM-> tylko do debuggowania pojedynczej karty evenu
+    //MM-> tylko do debuggowania mapy
     public void goToEvent(View view){
-        Intent intent = new Intent(LoginActivity.this, UserInfoActivity.class);
-        intent.putExtra("eid", "1");
+        Intent intent = new Intent(LoginActivity.this, ShowNearbyActivity.class);
+        intent.putExtra("lat", 50.0646501);
+        intent.putExtra("lon", 19.9449799);
+        intent.putExtra("nearbyMode", true);
         startActivity(intent);
-    }
+}
 
     private void resetVisibility(){
         loginButton.setVisibility(View.VISIBLE);

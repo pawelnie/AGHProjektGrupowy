@@ -34,6 +34,7 @@ public class EventEntryActivity extends ActivityWithMenu {
     private final String EID_KEY = "eid";
     private final String LAT = "lat";
     private final String LON = "lon";
+    private final String NEARBY_MODE = "nearbyMode";
     private TextView eventTitle;
     private TextView eventDescription;
     private TextView eventInfo;
@@ -101,6 +102,7 @@ public class EventEntryActivity extends ActivityWithMenu {
             startTimer();
             bundle.putDouble(LAT, Double.parseDouble(event.getLatitude()));
             bundle.putDouble(LON, Double.parseDouble(event.getLongitude()));
+            bundle.putBoolean(NEARBY_MODE, false);
             eventMapFragment.setArguments(bundle);
             fragmentTransaction.add(R.id.map_container, eventMapFragment);
             fragmentTransaction.commit();
