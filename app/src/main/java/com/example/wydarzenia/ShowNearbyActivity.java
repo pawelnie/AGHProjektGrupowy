@@ -1,9 +1,16 @@
 package com.example.wydarzenia;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.wydarzenia.model.Event;
 import com.example.wydarzenia.model.EventCache;
@@ -34,9 +41,12 @@ public class ShowNearbyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_nearby);
 
+
+
         Bundle extras = getIntent().getExtras();
         lat = extras.getDouble(LAT);
         lon = extras.getDouble(LON);
+
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -89,5 +99,6 @@ public class ShowNearbyActivity extends AppCompatActivity {
         });
 
     }
+
 
 }
