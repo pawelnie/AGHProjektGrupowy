@@ -28,6 +28,7 @@
     <string name="title_activity_all_events">AllEventsActivity</string>
     <string name="event_over">Event is already over:(</string>
     <string name="birth_label">Date of Birth</string>
+    <string name="title_activity_gallery">Gallery</string>
 
 
 </resources>

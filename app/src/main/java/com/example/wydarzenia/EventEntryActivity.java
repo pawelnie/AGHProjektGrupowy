@@ -56,6 +56,7 @@ public class EventEntryActivity extends ActivityWithMenu {
     String latitude;
     String longitude;
 
+
     int eventId;
     Integer responseId;
     int userId;
@@ -78,6 +79,7 @@ public class EventEntryActivity extends ActivityWithMenu {
         countDown = (TextView) findViewById(R.id.countDownText);
         Button buttonNavigate = findViewById(R.id.button_navigate);
         Button buttonShowOnMap = findViewById(R.id.button_show);
+
 
 
 
@@ -108,6 +110,7 @@ public class EventEntryActivity extends ActivityWithMenu {
             eventImageURL = event.getPhotoid();
             latitude = event.getLatitude();
             longitude = event.getLongitude();
+
 
             try{
                 startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(event.getDate());
@@ -164,7 +167,15 @@ public class EventEntryActivity extends ActivityWithMenu {
             }
         });
 
-
+        //TODO Gallery
+        Button buttonGallery = findViewById(R.id.button_gallery);
+        buttonGallery.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(EventEntryActivity.this, GalleryActivity.class);
+                intent.putExtra("eventID", Integer.toString(eventId));
+                startActivity(intent);
+            }
+        });
 
 
     }
