@@ -67,7 +67,13 @@
             android:label="@string/title_activity_register" />
         <activity
             android:name=".EventEntryActivity"
-            android:label="Event card" />
+            android:label="Event card"
+            android:parentActivityName=".AllEventsActivity">
+            <intent-filter>
+                <action android:name="com.example.wydarzenia_TARGET_NOTIFICATION"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

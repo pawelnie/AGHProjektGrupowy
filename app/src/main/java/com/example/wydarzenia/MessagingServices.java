@@ -1,12 +1,18 @@
 package com.example.wydarzenia;
 
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 public class MessagingServices extends FirebaseMessagingService {
-    public final String FCM = "FCM";
+    private final String EID_KEY = "eid";
+    String eid;
     //public MessagingServices() {
     //}
 
@@ -20,6 +26,31 @@ public class MessagingServices extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
+
+        eid = remoteMessage.getData().get("event");
+
+        Intent intent = new Intent(this, EventEntryActivity.class);
+        intent.putExtra(EID_KEY, eid);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
+        stackBuilder.addNextIntentWithParentStack(intent);
+
+        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "reminder")
+                .setSmallIcon(R.drawable.notification_icon)
+                .setContentTitle(remoteMessage.getData().get("title"))
+                .setContentText(remoteMessage.getData().get("text"))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+        notificationManager.notify(1, builder.build());
+
+
     }
 
     /**
@@ -29,7 +60,7 @@ public class MessagingServices extends FirebaseMessagingService {
      */
     @Override
     public void onNewToken(String token) {
-        Log.d(FCM, "Refreshed token: " + token);
+        Log.d("FCM", "Refreshed token: " + token);
 
 
         // If you want to send messages to this application instance or
