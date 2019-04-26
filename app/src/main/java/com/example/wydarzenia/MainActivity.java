@@ -231,9 +231,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_all_events) {
             Intent intent = new Intent(getApplicationContext(), AllEventsActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_playground) {
-            Intent intent = new Intent(getApplicationContext(), PlaygroundActivity.class);
-            startActivity(intent);
+//        } else if (id == R.id.nav_playground) {
+//            Intent intent = new Intent(getApplicationContext(), PlaygroundActivity.class);
+//            startActivity(intent);
 
 
         } else if (id == R.id.nav_userinfo) {

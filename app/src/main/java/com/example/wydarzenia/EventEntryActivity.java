@@ -168,14 +168,14 @@ public class EventEntryActivity extends ActivityWithMenu {
         });
 
         //TODO Gallery
-        Button buttonGallery = findViewById(R.id.button_gallery);
-        buttonGallery.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(EventEntryActivity.this, GalleryActivity.class);
-                intent.putExtra("eventID", Integer.toString(eventId));
-                startActivity(intent);
-            }
-        });
+//        Button buttonGallery = findViewById(R.id.button_gallery);
+//        buttonGallery.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent intent = new Intent(EventEntryActivity.this, GalleryActivity.class);
+//                intent.putExtra("eventID", Integer.toString(eventId));
+//                startActivity(intent);
+//            }
+//        });
 
 
     }
